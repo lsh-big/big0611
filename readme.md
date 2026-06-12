@@ -13,7 +13,8 @@ _이탤릭(italic, 기울어진 글자)_
 굵고 기울게
 ~~취소선~~
 > 인용구
-I need to highlight these ==very important words==.
+H~2~O
+X^2^
 
 ---
 ### 목록
