@@ -10,9 +10,28 @@ ul {
     padding: 0;
     list-style: none;
 }
+
 body {
-    background: lightsalmon;
+     background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+     margin-top: 20px;
 }
 h1 {
+    color: #a29bf2;
     
+}
+.logo img {
+    width: 400px;
+    height: 400px;
+    border-radius: 12px;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
