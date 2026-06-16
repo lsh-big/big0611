@@ -1,8 +1,4 @@
-// console.log("JavaScript 연결 성공!");
 
-// document.querySelector("h1").addEventListener("click", () => {
-//     alert("제목을 클릭했습니다!");
-// });
 function showMessage() {
     const messages = [
         "🔥 환영합니다! 즐거운 시간 보내세요!",
