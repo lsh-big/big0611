@@ -9,18 +9,23 @@
 </head>
 <body>
 
-    <header>
-    <div class="logo">
-        <img src="main.png" alt="홈페이지 아이콘">
-    </div>
+    <div class="container">
+        <h1 id="welcome">🎉 이승호의 사이트 방문을 격렬히 환영합니다! 🎉</h1>
+        <img src="/main.png" alt="main" class="main-image">
+
+        <p class="sub-text">
+            AI 와 함께하는 스마트한 라이프
+        </p>
+
         
-    </header>  <br>
-    
-    <h1>이승호의 웹 사이트</h1>
-    <p>저의 사이트 방문을 격렬히 환영합니다.</p>
-    <script src="js/script.js"></script>
 
+        <button onclick="showMessage()">
+            환영 인사
+        </button>
 
+        <p id="message"></p>
+    </div>
 
+    <script src="/js/script.js"></script>
 </body>
 </html>
