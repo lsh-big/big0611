@@ -127,3 +127,62 @@ print(count)
 
 # 구구단: 3단
 # range() 함수
+
+# 다음 기능을 모두 포함한 상품 재고 관리 시스템을 작성하시오.
+'''
+1. 초기 재고 설정: '사과': 50개, '바나나': 30개, '오렌지': 25개로 시작
+2. 상품 관리 기능: 새 상품 추가(포도 40개 추가), 기존 상품 재고 수정, 상품 삭제
+3. 재고 조회 기능: 전체 재고 현황 출력, 특정 상품 재고 확인, 재고 부족 상품 찾기(30개 미만)
+4. 재고 변경 기능: 상품 판매 시재고 차감, 상품 입고 시 재고 증가, 재고 부족 시 경고 메시지
+'''
+# 출력 예시
+'''
+포도 재고 추가 완료
+=== 현재 재고 현황 ===
+사과: 50개
+바나나: 30개
+오렌지: 25개
+포도: 40개
+사과 재고: 50개
+=== 재고 부족 상품 ===
+오렌지: 25개(재고 부족)
+사과 10개 판매 완료
+사과 현재 재고: 40개
+'''
+# 상품 재고 관리 시스템
+inventory = {
+    '사과': 50,
+    '바나나': 30,
+    '오렌지': 25
+}
+# 새 상품 추가
+# 2. 상품 관리 기능: 새 상품 추가(포도 40개 추가), 기존 상품 재고 수정, 상품 삭제
+inventory['포도'] = 40
+print("포도 재고 추가 완료")
+
+# 재고 현황 출력
+print("=== 현재 재고 현황 ===")
+for product, quantity in inventory.items():
+    print(f"{product}: {quantity}개")
+
+# 특정 상품 재고 확인
+product_name = "사과"
+if product_name in inventory:
+    print(f"{product_name} 재고: {inventory[product_name]}개")
+else:
+    print(f"{product_name} 재고: 0개")
+
+# 재고 부족 상품 찾기
+# 3. 재고 조회 기능: 전체 재고 현황 출력, 특정 상품 재고 확인, 재고 부족 상품 찾기(30개 미만)
+print("=== 재고 부족 상품 ===")
+for product, quantity in inventory.items():
+    if quantity < 30:
+        print(f"{product}: {quantity}개(재고 부족)")
+
+# 상품 판매시 재고 차감
+# 4. 재고 변경 기능: 상품 판매 시재고 차감, 상품 입고 시 재고 증가, 재고 부족 시 경고 메시지
+product_name = "사과"
+sale_cnt = 10
+inventory[product_name] = inventory[product_name] - sale_cnt
+print(f"{product_name} {sale_cnt}개 판매 완료")
+print(f"{product_name} 현재 재고: {inventory[product_name]}개")
