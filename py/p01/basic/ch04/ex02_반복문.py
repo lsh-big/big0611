@@ -186,3 +186,4 @@ sale_cnt = 10
 inventory[product_name] = inventory[product_name] - sale_cnt
 print(f"{product_name} {sale_cnt}개 판매 완료")
 print(f"{product_name} 현재 재고: {inventory[product_name]}개")
+

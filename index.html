@@ -3,32 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이승호의 홈페이지</title>
+    <meta name="description" content="빅데이터 1000시간 과정을 수료한 데이터 기반 웹 개발자 포트폴리오">
+    <title>Lee Seung Ho | Data Driven Web Developer</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" type="image/png" href="main.png">
 </head>
 <body>
-
-    <div class="container">
-        <h1 id="welcome">🎉 이승호의 사이트 방문을 격렬히 환영합니다! 🎉</h1>
-        <img src="main.png" alt="main" class="main-image">
-
-        <p class="sub-text">
-            AI 와 함께하는 스마트한 라이프
-        </p>
-
-        
-
-        <button onclick="showMessage()">
-            환영 인사
+    <header class="site-header" aria-label="주요 메뉴">
+        <a class="brand" href="#home" aria-label="홈으로 이동">
+            <span class="brand-mark">LSH</span>
+            <span class="brand-text">Data Developer</span>
+        </a>
+        <nav class="nav-links">
+            <a href="#profile">Profile</a>
+            <a href="#skills">Skills</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">
+            <span></span>
+            <span></span>
         </button>
+    </header>
 
-        <p id="message"></p>
-    </div>
+    <main class="snap-wrapper">
+        <section id="home" class="panel hero">
+            <div class="hero-visual" aria-hidden="true">
+                <div class="code-window">
+                    <div class="window-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <pre><code>const developer = {
+  background: "Big Data 1000h",
+  domain: "Real Estate Analytics",
+  stack: ["Spring", "Python", "Cloud"],
+  value: "reliable execution"
+};</code></pre>
+                </div>
+            </div>
+            <div class="hero-content">
+                <p class="eyebrow">Big Data 1000h Graduate</p>
+                <h1>데이터로 시장을 읽고 서비스로 완성하는 개발자</h1>
+                <p class="hero-copy">
+                    빅데이터 1000시간 과정을 수료하고 웹 개발, 데이터 분석, 클라우드 배포를 연결해
+                    실사용 가능한 서비스를 만드는 개발자 이승호입니다. 다양한 업무 경험에서 얻은 문제 해결력과
+                    꾸준한 실행력을 바탕으로 IT 기업에서 신뢰받는 동료가 되고자 합니다.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn primary" href="#portfolio">프로젝트 보기</a>
+                    <a class="btn ghost" href="#contact">연락하기</a>
+                </div>
+                <div class="hero-stats" aria-label="핵심 역량">
+                    <div>
+                        <strong>1000h</strong>
+                        <span>빅데이터 교육</span>
+                    </div>
+                    <div>
+                        <strong>40s</strong>
+                        <span>성숙한 협업 태도</span>
+                    </div>
+                    <div>
+                        <strong>Full</strong>
+                        <span>분석부터 배포</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="profile" class="panel profile-panel">
+            <div class="section-heading">
+                <p class="eyebrow">Profile</p>
+                <h2>현실의 문제를 기술로 정리하는 사람</h2>
+            </div>
+            <div class="profile-grid">
+                <article class="profile-card intro-card">
+                    <p>
+                        안녕하세요. 저는 40대 중반의 데이터 기반 웹 개발자 이승호입니다. 빅데이터 1000시간 과정을 통해
+                        Python 데이터 분석, Java 백엔드, Spring 웹 서비스, 클라우드 배포까지 하나의 흐름으로 학습했습니다.
+                    </p>
+                    <p>
+                        단순히 기술을 나열하기보다 사용자가 겪는 문제를 이해하고, 데이터를 근거로 판단하며,
+                        안정적으로 작동하는 결과물을 만드는 것을 중요하게 생각합니다. 현재는 부동산 시장 데이터를 분석해
+                        사용자에게 맞춤형 매물을 추천하는 플랫폼을 제작하고 있습니다.
+                    </p>
+                </article>
+                <article class="profile-card timeline-card">
+                    <div class="timeline-item">
+                        <span>01</span>
+                        <div>
+                            <h3>Business Understanding</h3>
+                            <p>시장, 사용자, 데이터의 맥락을 먼저 파악하고 필요한 기능을 구조화합니다.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span>02</span>
+                        <div>
+                            <h3>Data Engineering</h3>
+                            <p>Python, MySQL, TiDB를 활용해 데이터를 수집, 정리, 분석 가능한 형태로 다룹니다.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <span>03</span>
+                        <div>
+                            <h3>Service Delivery</h3>
+                            <p>Spring, Thymeleaf, AWS, Render를 활용해 웹 서비스 구현과 배포까지 연결합니다.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="skills" class="panel skills-panel">
+            <div class="section-heading">
+                <p class="eyebrow">Skills</p>
+                <h2>데이터 분석과 웹 서비스 구현을 잇는 기술 스택</h2>
+            </div>
+            <div class="skill-board">
+                <article class="skill-group">
+                    <h3>Frontend</h3>
+                    <div class="chips">
+                        <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>React</span><span>BootStrap5</span>
+                    </div>
+                </article>
+                <article class="skill-group">
+                    <h3>Backend</h3>
+                    <div class="chips">
+                        <span>Java</span><span>JSP/Servlet</span><span>Spring</span><span>Thymeleaf</span><span>REST API</span>
+                    </div>
+                </article>
+                <article class="skill-group">
+                    <h3>Data & AI</h3>
+                    <div class="chips">
+                        <span>Python</span><span>MySQL</span><span>TiDB</span><span>RPA</span><span>MLOps</span><span>생성형 AI</span>
+                    </div>
+                </article>
+                <article class="skill-group">
+                    <h3>Cloud & Tools</h3>
+                    <div class="chips">
+                        <span>Git&GitHub</span><span>AWS EC2</span><span>RDS</span><span>S3</span><span>Render</span><span>DevOps</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="portfolio" class="panel portfolio-panel">
+            <div class="section-heading">
+                <p class="eyebrow">Portfolio</p>
+                <h2>제작 중인 대표 프로젝트</h2>
+            </div>
+            <div class="project-grid single-project">
+                <article class="project-card featured">
+                    <div class="project-top">
+                        <span class="project-index">In Progress</span>
+                        <span class="project-status">URL 준비 중</span>
+                    </div>
+                    <h3>부동산 시장 분석 기반 맞춤형 매물 추천 플랫폼</h3>
+                    <p>
+                        지역별 시세, 매물 조건, 생활 인프라, 사용자 선호도를 분석해 적합한 매물을 추천하는 웹 플랫폼입니다.
+                        데이터 분석 결과를 사용자가 이해하기 쉬운 화면으로 제공하고, 조건 비교와 추천 근거를 함께 보여주는 것을 목표로 제작 중입니다.
+                    </p>
+                    <div class="project-tags">
+                        <span>Python</span><span>Spring</span><span>MySQL</span><span>AWS</span><span>추천 로직</span><span>Data Visualization</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="panel contact-panel">
+            <div class="section-heading">
+                <p class="eyebrow">Contact</p>
+                <h2>새로운 기회를 기다리고 있습니다</h2>
+            </div>
+            <div class="contact-layout">
+                <div class="contact-info">
+                    <a href="tel:010-1234-5678">
+                        <span>Phone</span>
+                        010-1234-5678
+                    </a>
+                    <a href="mailto:lsh.dev@example.com">
+                        <span>Email</span>
+                        lsh.dev@example.com
+                    </a>
+                    <p>
+                        채용, 협업, 프로젝트 문의를 남겨주시면 빠르게 확인하겠습니다.
+                        Netlify 배포 후 Forms 메뉴에서 제출 내역과 이메일 알림을 확인할 수 있습니다.
+                    </p>
+                </div>
+
+                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+                    <input type="hidden" name="form-name" value="contact">
+                    <p class="hidden">
+                        <label>비워두세요 <input name="bot-field"></label>
+                    </p>
+                    <label>
+                        이름
+                        <input type="text" name="name" placeholder="홍길동" required>
+                    </label>
+                    <label>
+                        연락처
+                        <input type="text" name="phone" placeholder="010-0000-0000" required>
+                    </label>
+                    <label>
+                        메시지
+                        <textarea name="message" rows="5" placeholder="문의 내용을 입력해 주세요." required></textarea>
+                    </label>
+                    <button class="btn primary submit-btn" type="submit">메시지 보내기</button>
+                    <p class="form-status" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <script src="./js/script.js"></script>
 </body>
 </html>
-
-
-
