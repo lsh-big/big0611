@@ -222,3 +222,4 @@ def celsius_to_fahrenheit(celsius):
 celsius_temp = 25
 fahrenheit_temp = celsius_to_fahrenheit(celsius_temp)
 print(f'섭씨 {celsius_temp}도는 화씨 {fahrenheit_temp:.1f}도 입니다.')
+
