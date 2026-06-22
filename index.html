@@ -121,59 +121,101 @@ button {
 }
 .hero {
     position: relative;
-    overflow: hidden;
-    padding: 84px 24px 48px;
-    background-image: radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 28%),
-                      radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.1), transparent 24%);
+    padding: 96px 24px 64px;
+    background: linear-gradient(180deg, #fbfdff 0%, #eef5ff 50%, #e5efff 100%);
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 16% 18%, rgba(37, 99, 235, 0.16), transparent 18%),
+                radial-gradient(circle at 88% 12%, rgba(34, 197, 94, 0.14), transparent 22%);
+    pointer-events: none;
 }
 .hero-inner {
-    max-width: 1200px;
+    position: relative;
+    max-width: 1240px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(360px, 460px);
-    align-items: center;
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 0.95fr);
     gap: 40px;
+    align-items: center;
 }
 .hero-copy {
-    max-width: 640px;
+    position: relative;
+    z-index: 1;
 }
 .eyebrow {
     display: inline-flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 18px;
-    font-size: 0.83rem;
+    font-size: 0.86rem;
     font-weight: 800;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--primary-strong);
 }
-.eyebrow span {
-    display: inline-flex;
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-    background: var(--primary);
-}
 .hero-title {
-    font-size: clamp(2.75rem, 3.9vw, 4.8rem);
+    font-size: clamp(3rem, 4.3vw, 4.6rem);
     line-height: 1.02;
     letter-spacing: -0.05em;
-    margin-bottom: 18px;
+    margin-bottom: 24px;
 }
 .hero-text {
+    font-size: 1.05rem;
     max-width: 560px;
-    font-size: 1rem;
-    line-height: 1.8;
+    line-height: 1.85;
     color: var(--muted);
     margin-bottom: 32px;
+}
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+.hero-actions .cta-button,
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight: 700;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+.secondary-button {
+    color: var(--text);
+    background: white;
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+}
+.hero-actions .cta-button:hover,
+.secondary-button:hover {
+    transform: translateY(-1px);
+}
+.hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.hero-badges span {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: white;
+    color: var(--primary-strong);
+    font-size: 0.92rem;
+    font-weight: 700;
+    box-shadow: 0 18px 50px rgba(37, 99, 235, 0.08);
 }
 .search-box {
     width: 100%;
     background: white;
     border-radius: 28px;
     box-shadow: var(--shadow);
-    padding: 20px;
+    padding: 24px;
     display: grid;
     gap: 18px;
 }
@@ -187,7 +229,7 @@ button {
     width: 100%;
     border: 1px solid rgba(15, 23, 42, 0.12);
     border-radius: 16px;
-    padding: 14px 18px;
+    padding: 16px 18px;
     outline: none;
     background: #f8fafc;
 }
@@ -198,7 +240,7 @@ button {
 }
 .search-actions {
     display: flex;
-    gap: 14px;
+    gap: 16px;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -238,29 +280,82 @@ button {
 .category-button:hover,
 .category-button.active {
     transform: translateY(-2px);
-    background: rgba(37, 99, 235, 0.08);
+    background: rgba(37, 99, 235, 0.1);
 }
 .hero-visual {
     position: relative;
     min-height: 520px;
-    border-radius: 30px;
+    border-radius: 34px;
     overflow: hidden;
-    background: linear-gradient(180deg, rgba(99, 102, 241, 0.16), transparent 56%),
-                url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=980&q=80') center/cover no-repeat;
-    box-shadow: var(--shadow);
+    padding: 28px;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.14), rgba(34, 197, 94, 0.08));
+    box-shadow: 0 32px 85px rgba(15, 23, 42, 0.12);
 }
 .hero-visual::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.28));
+    background: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1300&q=80') center/cover no-repeat;
+    opacity: 0.18;
+}
+.hero-card {
+    position: relative;
+    z-index: 1;
+    padding: 32px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 28px 70px rgba(15, 23, 42, 0.12);
+    display: grid;
+    gap: 20px;
+}
+.hero-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.hero-card-header span {
+    color: var(--primary);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+}
+.hero-card-header strong {
+    font-size: 1.7rem;
+    color: var(--text);
+}
+.hero-card-copy {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--muted);
+}
+.hero-stats {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+.hero-stat {
+    padding: 24px;
+    border-radius: 24px;
+    background: white;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+.hero-stat strong {
+    display: block;
+    font-size: 1.75rem;
+    margin-bottom: 10px;
+    color: var(--text);
+}
+.hero-stat span {
+    color: var(--muted);
+    font-size: 0.95rem;
 }
 .feature-panel {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 28px;
+    left: 28px;
+    right: 28px;
     padding: 24px;
+    border-radius: 30px;
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(10px);
 }
@@ -433,6 +528,65 @@ button {
     color: var(--muted);
     line-height: 1.8;
 }
+.faq-list,
+.notice-list,
+.sitemap-grid {
+    display: grid;
+    gap: 18px;
+}
+.faq-item,
+.notice-item {
+    padding: 24px;
+    border-radius: 24px;
+    background: white;
+    box-shadow: var(--shadow);
+}
+.faq-item h3,
+.notice-item h3 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+.faq-item p,
+.notice-item p,
+.contact-card p {
+    color: var(--muted);
+    line-height: 1.8;
+}
+.contact-card {
+    background: white;
+    border-radius: 28px;
+    padding: 32px;
+    box-shadow: var(--shadow);
+}
+.contact-card h3 {
+    margin-bottom: 18px;
+}
+.sitemap-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.sitemap-column h4 {
+    margin-bottom: 14px;
+}
+.sitemap-column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.sitemap-column li {
+    margin-bottom: 10px;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+.sitemap-column li::before {
+    content: "•";
+    margin-right: 10px;
+    color: var(--primary);
+}
+@media (max-width: 880px) {
+    .sitemap-grid {
+        grid-template-columns: 1fr;
+    }
+}
 .footer {
     background: #0f172a;
     color: #cbd5e1;
@@ -524,7 +678,14 @@ button {
             <a href="#search">매물찾기</a>
             <a href="#recommend">추천매물</a>
             <a href="#service">서비스</a>
-            <a href="#footer">고객지원</a>
+            <a href="#platform">플랫폼</a>
+            <a href="#guide">이용방법</a>
+            <a href="#recommendation">추천시스템</a>
+            <a href="#analysis">시장분석</a>
+            <a href="#faq">FAQ</a>
+            <a href="#notice">공지</a>
+            <a href="#contact">문의</a>
+            <a href="#sitemap">사이트맵</a>
         </nav>
         <a class="cta-button" href="#">매물등록</a>
     </div>
@@ -532,9 +693,20 @@ button {
 <section class="hero">
     <div class="hero-inner">
         <div class="hero-copy">
-            <p class="eyebrow"><span></span>내 집을 찾는 가장 빠른 방법</p>
-            <h1 class="hero-title">집찾go와 함께, 원하는 매물을 더 쉽고 빠르게.</h1>
-            <p class="hero-text">상세 필터, 지역 기반 추천, 실시간 매물 알림까지. 서울과 수도권 주요 매물을 한 번에 확인하고 관심매물로 바로 저장하세요.</p>
+            <p class="eyebrow"><span></span>팀 기반 부동산 플랫폼</p>
+            <h1 class="hero-title">5인 팀이 만든 맞춤형 부동산 추천, 분석, 검색 서비스.</h1>
+            <p class="hero-text">홈, 서비스 소개, 플랫폼 소개, 이용방법, 추천 시스템, 시장 분석, FAQ, 공지사항, 문의하기, 사이트맵을 모두 지원하는 세련된 메인 화면입니다.</p>
+            <div class="hero-actions">
+                <a href="#service" class="cta-button">서비스 확인하기</a>
+                <a href="#recommendation" class="secondary-button">추천 시스템 보기</a>
+            </div>
+            <div class="hero-badges">
+                <span>팀원 1: 메인 & 서비스 소개</span>
+                <span>팀원 2: 회원 관리</span>
+                <span>팀원 3: 부동산 검색</span>
+                <span>팀원 4: 시장 분석</span>
+                <span>팀원 5: 맞춤 추천</span>
+            </div>
             <div class="search-box" id="search">
                 <div class="search-fields">
                     <input id="searchInput" type="text" placeholder="지역, 아파트명, 매물 유형을 검색하세요">
@@ -560,19 +732,40 @@ button {
             </div>
         </div>
         <div class="hero-visual">
+            <div class="hero-card">
+                <div class="hero-card-header">
+                    <span>맞춤형 플랫폼</span>
+                    <strong>팀 단위 개발 & 페이지 구성</strong>
+                </div>
+                <p class="hero-card-copy">집찾go는 5인 팀이 각 파트를 맡아 사용자 중심으로 설계한 부동산 플랫폼입니다. 추천, 분석, 검색, 회원관리, 메인 페이지까지 완벽하게 연결됩니다.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <strong>10개</strong>
+                        <span>핵심 페이지 구성</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>5개</strong>
+                        <span>파트별 전문 팀</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>100%</strong>
+                        <span>메인 화면 지원</span>
+                    </div>
+                </div>
+            </div>
             <div class="feature-panel">
                 <div class="feature-summary">
                     <div class="feature-card">
-                        <strong>1,580+</strong>
-                        <span>실시간 등록 매물</span>
+                        <strong>맞춤 추천</strong>
+                        <span>개인별 예산/지역 기반 제안</span>
                     </div>
                     <div class="feature-card">
-                        <strong>24시간</strong>
-                        <span>매물 알림 서비스</span>
+                        <strong>시장 분석</strong>
+                        <span>가격 추이 & 투자 정보 제공</span>
                     </div>
                     <div class="feature-card">
-                        <strong>98%</strong>
-                        <span>사용자 만족도</span>
+                        <strong>완성형 네비게이션</strong>
+                        <span>홈부터 사이트맵까지 통합</span>
                     </div>
                 </div>
             </div>
@@ -728,6 +921,249 @@ button {
         <div class="card-panel">
             <h3>매물 업데이트</h3>
             <p>중개사와 실시간으로 연동되는 최신 매물 정보를 유지하여 놓치지 않고 확인할 수 있습니다.</p>
+        </div>
+    </div>
+</section>
+<section class="section" id="platform">
+    <div class="section-header">
+        <div>
+            <h2>플랫폼 소개</h2>
+            <p>팀별 전문 페이지로 구성된 집찾go 플랫폼은 회원관리, 검색, 분석, 추천까지 한 번에 제공합니다.</p>
+        </div>
+    </div>
+    <div class="section-grid">
+        <div class="card-panel">
+            <h3>팀원 1: 메인 & 서비스 소개</h3>
+            <p>홈, 서비스 소개, 플랫폼 소개, 이용방법, 추천 시스템, 시장 분석, FAQ, 공지사항, 문의하기, 사이트맵 페이지를 제공합니다.</p>
+        </div>
+        <div class="card-panel">
+            <h3>팀원 2: 회원 관리</h3>
+            <p>로그인, 회원가입, 아이디/비밀번호 찾기, 회원정보 수정, 탈퇴, 개인정보 처리방침, 이용약관, 알림 설정, 마이페이지가 포함됩니다.</p>
+        </div>
+        <div class="card-panel">
+            <h3>팀원 3: 부동산 검색</h3>
+            <p>매물 검색부터 지역, 지도, 아파트, 오피스텔, 빌라, 원룸 검색, 상세 필터와 최근 검색까지 지원합니다.</p>
+        </div>
+        <div class="card-panel">
+            <h3>팀원 4: 시장 분석</h3>
+            <p>시장 분석 메인, 지역별 시세, 가격 추이, 거래량, 투자 유망 지역, 상승/하락률 분석, 지역 비교, 차트 분석, 분석 리포트를 제공합니다.</p>
+        </div>
+        <div class="card-panel">
+            <h3>팀원 5: 맞춤 추천</h3>
+            <p>추천 메인, 조건 입력, 예산/희망 지역 설정, 추천 결과, 매물 상세, 관심 매물, 비교하기, 추천 이력, AI 추천 리포트를 준비합니다.</p>
+        </div>
+    </div>
+</section>
+<section class="section" id="guide">
+    <div class="section-header">
+        <div>
+            <h2>이용 방법</h2>
+            <p>단계별로 간편하게 매물을 찾고, 분석 데이터를 기반으로 추천받는 방법을 안내합니다.</p>
+        </div>
+    </div>
+    <div class="section-grid">
+        <div class="card-panel">
+            <h3>1. 회원 가입 / 로그인</h3>
+            <p>맞춤 추천과 관심매물 저장을 위해 간편하게 회원 가입 후 로그인하세요.</p>
+        </div>
+        <div class="card-panel">
+            <h3>2. 조건 입력</h3>
+            <p>예산, 희망 지역, 매물 유형 등 개인 설정을 입력하면 AI 추천이 더욱 정확해집니다.</p>
+        </div>
+        <div class="card-panel">
+            <h3>3. 추천 확인</h3>
+            <p>추천 결과를 확인하고 관심 매물을 저장하거나 상세 정보를 비교해보세요.</p>
+        </div>
+    </div>
+</section>
+<section class="section" id="recommendation">
+    <div class="section-header">
+        <div>
+            <h2>추천 시스템 소개</h2>
+            <p>시장 데이터와 사용자의 선호를 결합해 맞춤형 매물을 제안하는 추천 엔진입니다.</p>
+        </div>
+    </div>
+    <div class="section-grid">
+        <div class="card-panel">
+            <h3>AI 기반 추천</h3>
+            <p>과거 거래 데이터, 예산, 희망 지역을 분석해 개인에게 최적화된 매물을 보여줍니다.</p>
+        </div>
+        <div class="card-panel">
+            <h3>맞춤형 예산 설정</h3>
+            <p>예산과 생활 패턴을 반영해 월세, 전세, 매매 매물을 다채롭게 추천합니다.</p>
+        </div>
+        <div class="card-panel">
+            <h3>추천 이력과 리포트</h3>
+            <p>추천 이력을 확인하고 AI 추천 리포트로 투자 가치와 시장 흐름을 한눈에 볼 수 있습니다.</p>
+        </div>
+    </div>
+</section>
+<section class="section" id="analysis">
+    <div class="section-header">
+        <div>
+            <h2>시장 분석 소개</h2>
+            <p>지역별 시세와 가격 추이를 기반으로 투자 유망 지역을 쉽게 파악할 수 있습니다.</p>
+        </div>
+    </div>
+    <div class="section-grid">
+        <div class="card-panel">
+            <h3>지역별 시세</h3>
+            <p>서울, 수도권 등 주요 지역의 최신 시세를 비교하고 정리합니다.</p>
+        </div>
+        <div class="card-panel">
+            <h3>가격 추이 & 거래량</h3>
+            <p>최근 거래량과 가격 흐름을 시각화하여 상승·하락 패턴을 한눈에 확인합니다.</p>
+        </div>
+        <div class="card-panel">
+            <h3>투자 유망 지역</h3>
+            <p>상승률과 하락률 분석을 통해 미래 가치를 예측하고 추천 지역을 제시합니다.</p>
+        </div>
+    </div>
+</section>
+<section class="section" id="faq">
+    <div class="section-header">
+        <div>
+            <h2>자주 묻는 질문</h2>
+            <p>플랫폼 이용과 추천 서비스에 자주 묻는 질문을 모아두었습니다.</p>
+        </div>
+    </div>
+    <div class="faq-list">
+        <div class="faq-item">
+            <h3>Q1. 추천 매물은 어떻게 제공되나요?</h3>
+            <p>사용자의 예산, 희망 지역, 등록된 매물 정보를 분석하여 AI가 맞춤형 매물을 제안합니다.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Q2. 회원 가입 후 어떤 기능을 사용할 수 있나요?</h3>
+            <p>관심매물 저장, 알림 설정, 추천 이력 확인, 맞춤 리포트 등 개인화 기능을 모두 이용할 수 있습니다.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Q3. 시장 분석 데이터는 어떻게 업데이트되나요?</h3>
+            <p>실시간 거래 정보와 공인중개사 데이터를 기반으로 정기적으로 최신 분석 리포트를 제공합니다.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Q4. 문의는 어디서 하나요?</h3>
+            <p>하단 문의 섹션에서 전화, 이메일로 연락하거나 사이트 내 문의하기 페이지를 이용하세요.</p>
+        </div>
+    </div>
+</section>
+<section class="section" id="notice">
+    <div class="section-header">
+        <div>
+            <h2>공지사항</h2>
+            <p>최근 업데이트와 이벤트 소식을 빠르게 확인하세요.</p>
+        </div>
+    </div>
+    <div class="notice-list">
+        <div class="notice-item">
+            <h3>신규 서비스 오픈</h3>
+            <p>맞춤형 AI 추천과 시장 분석 리포트 기능이 추가되었습니다.</p>
+        </div>
+        <div class="notice-item">
+            <h3>회원 혜택 안내</h3>
+            <p>회원 가입 시 관심매물 알림과 추천 매물 우선 제공 혜택을 누리세요.</p>
+        </div>
+        <div class="notice-item">
+            <h3>앱 서비스 준비 중</h3>
+            <p>더 편리한 모바일 사용을 위한 앱 버전이 곧 출시됩니다.</p>
+        </div>
+    </div>
+</section>
+<section class="section" id="contact">
+    <div class="section-header">
+        <div>
+            <h2>문의하기</h2>
+            <p>서비스 관련 문의나 제휴 제안은 아래 연락처로 편하게 말씀해주세요.</p>
+        </div>
+    </div>
+    <div class="contact-card">
+        <h3>고객지원</h3>
+        <p>전화: 02-1234-5678</p>
+        <p>이메일: help@jipchakgo.com</p>
+        <p>운영시간: 평일 09:00 - 18:00</p>
+    </div>
+</section>
+<section class="section" id="sitemap">
+    <div class="section-header">
+        <div>
+            <h2>사이트맵</h2>
+            <p>팀별 담당 페이지를 한눈에 확인하세요.</p>
+        </div>
+    </div>
+    <div class="sitemap-grid">
+        <div class="sitemap-column">
+            <h4>팀원 1</h4>
+            <ul>
+                <li>메인 페이지</li>
+                <li>서비스 소개</li>
+                <li>플랫폼 소개</li>
+                <li>이용 방법</li>
+                <li>추천 시스템 소개</li>
+                <li>시장 분석 소개</li>
+                <li>FAQ</li>
+                <li>공지사항</li>
+                <li>문의하기</li>
+                <li>사이트맵</li>
+            </ul>
+        </div>
+        <div class="sitemap-column">
+            <h4>팀원 2</h4>
+            <ul>
+                <li>로그인</li>
+                <li>회원가입</li>
+                <li>아이디 찾기</li>
+                <li>비밀번호 찾기</li>
+                <li>회원정보 수정</li>
+                <li>회원탈퇴</li>
+                <li>개인정보 처리방침</li>
+                <li>이용약관</li>
+                <li>알림 설정</li>
+                <li>마이페이지 메인</li>
+            </ul>
+        </div>
+        <div class="sitemap-column">
+            <h4>팀원 3</h4>
+            <ul>
+                <li>매물 검색</li>
+                <li>지역 검색</li>
+                <li>지도 검색</li>
+                <li>아파트 검색</li>
+                <li>오피스텔 검색</li>
+                <li>빌라 검색</li>
+                <li>원룸 검색</li>
+                <li>검색 결과</li>
+                <li>상세 필터</li>
+                <li>최근 검색</li>
+            </ul>
+        </div>
+        <div class="sitemap-column">
+            <h4>팀원 4</h4>
+            <ul>
+                <li>시장 분석 메인</li>
+                <li>지역별 시세</li>
+                <li>가격 추이</li>
+                <li>거래량 분석</li>
+                <li>투자 유망 지역</li>
+                <li>상승률 분석</li>
+                <li>하락률 분석</li>
+                <li>지역 비교</li>
+                <li>차트 분석</li>
+                <li>분석 리포트</li>
+            </ul>
+        </div>
+        <div class="sitemap-column">
+            <h4>팀원 5</h4>
+            <ul>
+                <li>추천 메인</li>
+                <li>조건 입력</li>
+                <li>예산 설정</li>
+                <li>희망 지역 설정</li>
+                <li>추천 결과</li>
+                <li>매물 상세 정보</li>
+                <li>관심 매물</li>
+                <li>비교하기</li>
+                <li>추천 이력</li>
+                <li>AI 추천 리포트</li>
+            </ul>
         </div>
     </div>
 </section>
