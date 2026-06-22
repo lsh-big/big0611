@@ -1,221 +1,798 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="빅데이터 1000시간 과정을 수료한 데이터 기반 웹 개발자 포트폴리오">
-    <title>Lee Seung Ho | Data Driven Web Developer</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" type="image/png" href="main.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>집찾go - 부동산 매물 플랫폼</title>
+<meta name="description" content="집찾go에서 지역, 평수, 가격으로 최신 부동산 매물을 빠르게 검색하고 관심매물에 담아보세요.">
+<style>
+:root {
+    --bg: #f5f8ff;
+    --surface: #ffffff;
+    --surface-soft: #eef3ff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --primary: #2563eb;
+    --primary-strong: #1d4ed8;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --border: rgba(15, 23, 42, 0.08);
+    --shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    min-height: 100vh;
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+img {
+    display: block;
+    max-width: 100%;
+}
+button,
+input,
+select {
+    font: inherit;
+}
+button {
+    border: none;
+    cursor: pointer;
+}
+.page-wrapper {
+    overflow-x: hidden;
+}
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+.brand-mark {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #34d399, #38bdf8);
+    color: white;
+    font-weight: 800;
+    box-shadow: 0 16px 30px rgba(56, 189, 248, 0.2);
+}
+.brand-text {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.nav-links a {
+    color: var(--muted);
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+.nav-links a:hover {
+    color: var(--text);
+}
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: white;
+    border-radius: 999px;
+    padding: 12px 22px;
+    font-weight: 700;
+    transition: background 0.2s ease;
+}
+.cta-button:hover {
+    background: var(--primary-strong);
+}
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 84px 24px 48px;
+    background-image: radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 28%),
+                      radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.1), transparent 24%);
+}
+.hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 460px);
+    align-items: center;
+    gap: 40px;
+}
+.hero-copy {
+    max-width: 640px;
+}
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    font-size: 0.83rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--primary-strong);
+}
+.eyebrow span {
+    display: inline-flex;
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--primary);
+}
+.hero-title {
+    font-size: clamp(2.75rem, 3.9vw, 4.8rem);
+    line-height: 1.02;
+    letter-spacing: -0.05em;
+    margin-bottom: 18px;
+}
+.hero-text {
+    max-width: 560px;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 32px;
+}
+.search-box {
+    width: 100%;
+    background: white;
+    border-radius: 28px;
+    box-shadow: var(--shadow);
+    padding: 20px;
+    display: grid;
+    gap: 18px;
+}
+.search-fields {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1.5fr 1fr;
+}
+.search-fields input,
+.search-fields select {
+    width: 100%;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 16px;
+    padding: 14px 18px;
+    outline: none;
+    background: #f8fafc;
+}
+.search-fields input:focus,
+.search-fields select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+}
+.search-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.search-actions button {
+    flex: 1;
+    min-width: 160px;
+    border-radius: 999px;
+    padding: 14px 20px;
+    font-weight: 700;
+    color: white;
+    background: var(--primary);
+}
+.search-actions button.secondary {
+    background: #f8fafc;
+    color: var(--text);
+    box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.08);
+}
+.categories {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 32px;
+}
+.category-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 18px;
+    border-radius: 18px;
+    border: 1px solid rgba(37, 99, 235, 0.22);
+    background: white;
+    color: var(--text);
+    font-weight: 700;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+.category-button:hover,
+.category-button.active {
+    transform: translateY(-2px);
+    background: rgba(37, 99, 235, 0.08);
+}
+.hero-visual {
+    position: relative;
+    min-height: 520px;
+    border-radius: 30px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(99, 102, 241, 0.16), transparent 56%),
+                url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=980&q=80') center/cover no-repeat;
+    box-shadow: var(--shadow);
+}
+.hero-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.28));
+}
+.feature-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+}
+.feature-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px;
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+.feature-card strong {
+    font-size: 1.4rem;
+    color: var(--text);
+}
+.feature-card span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+.section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.section-header h2 {
+    font-size: clamp(2rem, 2.8vw, 2.8rem);
+    letter-spacing: -0.04em;
+}
+.section-header p {
+    color: var(--muted);
+}
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+.property-card {
+    background: white;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+.property-card:hover {
+    transform: translateY(-8px);
+}
+.property-card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+.property-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--primary-strong);
+}
+.property-body {
+    padding: 22px;
+}
+.property-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+.property-header h3 {
+    font-size: 1.18rem;
+    line-height: 1.3;
+}
+.favorite-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    background: white;
+    display: grid;
+    place-items: center;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+.favorite-btn:hover {
+    transform: scale(1.05);
+    background: #f8fafc;
+}
+.property-meta {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+.price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+.property-price {
+    color: var(--primary-strong);
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+.property-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 72px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.08);
+    color: var(--primary-strong);
+    font-weight: 700;
+    font-size: 0.92rem;
+}
+.property-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.property-features span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 16px;
+    background: #f8fafc;
+    color: var(--text);
+    font-size: 0.92rem;
+}
+.section-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+.card-panel {
+    background: white;
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+}
+.card-panel h3 {
+    margin-bottom: 14px;
+    font-size: 1.3rem;
+}
+.card-panel p {
+    color: var(--muted);
+    line-height: 1.8;
+}
+.footer {
+    background: #0f172a;
+    color: #cbd5e1;
+    padding: 48px 24px;
+}
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1fr;
+    gap: 24px;
+}
+.footer-brand h3 {
+    margin-bottom: 14px;
+    color: white;
+}
+.footer-brand p,
+.footer-column p,
+.footer-column a {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+.footer-column h4 {
+    margin-bottom: 16px;
+    color: white;
+}
+.footer-column a {
+    display: block;
+    margin-bottom: 10px;
+    transition: color 0.2s ease;
+}
+.footer-column a:hover {
+    color: white;
+}
+.footer-bottom {
+    margin-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 22px;
+    color: #94a3b8;
+    text-align: center;
+    font-size: 0.92rem;
+}
+@media (max-width: 1024px) {
+    .hero-inner,
+    .section-grid,
+    .cards,
+    .footer-inner,
+    .feature-summary {
+        grid-template-columns: 1fr;
+    }
+    .categories {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 760px) {
+    .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .hero {
+        padding-top: 60px;
+    }
+    .search-fields {
+        grid-template-columns: 1fr;
+    }
+    .search-actions {
+        flex-direction: column;
+    }
+    .property-card img {
+        height: 220px;
+    }
+}
+</style>
 </head>
 <body>
-    <header class="site-header" aria-label="주요 메뉴">
-        <a class="brand" href="#home" aria-label="홈으로 이동">
-            <span class="brand-mark">LSH</span>
-            <span class="brand-text">Data Developer</span>
+<div class="page-wrapper">
+<header class="site-header">
+    <div class="header-inner">
+        <a class="brand" href="#">
+            <span class="brand-mark">집</span>
+            <span class="brand-text">집찾go</span>
         </a>
         <nav class="nav-links">
-            <a href="#profile">Profile</a>
-            <a href="#skills">Skills</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
+            <a href="#search">매물찾기</a>
+            <a href="#recommend">추천매물</a>
+            <a href="#service">서비스</a>
+            <a href="#footer">고객지원</a>
         </nav>
-        <button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false">
-            <span></span>
-            <span></span>
-        </button>
-    </header>
-
-    <main class="snap-wrapper">
-        <section id="home" class="panel hero">
-            <div class="hero-visual" aria-hidden="true">
-                <div class="code-window">
-                    <div class="window-dots">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <pre><code>const developer = {
-  background: "Big Data 1000h",
-  domain: "Real Estate Analytics",
-  stack: ["Spring", "Python", "Cloud"],
-  value: "reliable execution"
-};</code></pre>
+        <a class="cta-button" href="#">매물등록</a>
+    </div>
+</header>
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-copy">
+            <p class="eyebrow"><span></span>내 집을 찾는 가장 빠른 방법</p>
+            <h1 class="hero-title">집찾go와 함께, 원하는 매물을 더 쉽고 빠르게.</h1>
+            <p class="hero-text">상세 필터, 지역 기반 추천, 실시간 매물 알림까지. 서울과 수도권 주요 매물을 한 번에 확인하고 관심매물로 바로 저장하세요.</p>
+            <div class="search-box" id="search">
+                <div class="search-fields">
+                    <input id="searchInput" type="text" placeholder="지역, 아파트명, 매물 유형을 검색하세요">
+                    <select id="areaSelect">
+                        <option value="전체">전체 지역</option>
+                        <option value="서울">서울</option>
+                        <option value="경기">경기</option>
+                        <option value="인천">인천</option>
+                        <option value="세종">세종</option>
+                    </select>
+                </div>
+                <div class="search-actions">
+                    <button onclick="searchHouse()">검색하기</button>
+                    <button class="secondary" onclick="resetFilters()">필터 초기화</button>
+                </div>
+                <div class="categories">
+                    <button class="category-button active" onclick="filterHouse('전체', this)">전체</button>
+                    <button class="category-button" onclick="filterHouse('아파트', this)">🏢 아파트</button>
+                    <button class="category-button" onclick="filterHouse('원룸', this)">🛏 원룸</button>
+                    <button class="category-button" onclick="filterHouse('오피스텔', this)">🏙 오피스텔</button>
+                    <button class="category-button" onclick="filterHouse('단독주택', this)">🏡 단독주택</button>
                 </div>
             </div>
-            <div class="hero-content">
-                <p class="eyebrow">Big Data 1000h Graduate</p>
-                <h1>데이터로 시장을 읽고 서비스로 완성하는 개발자</h1>
-                <p class="hero-copy">
-                    빅데이터 1000시간 과정을 수료하고 웹 개발, 데이터 분석, 클라우드 배포를 연결해
-                    실사용 가능한 서비스를 만드는 개발자 이승호입니다. 다양한 업무 경험에서 얻은 문제 해결력과
-                    꾸준한 실행력을 바탕으로 IT 기업에서 신뢰받는 동료가 되고자 합니다.
-                </p>
-                <div class="hero-actions">
-                    <a class="btn primary" href="#portfolio">프로젝트 보기</a>
-                    <a class="btn ghost" href="#contact">연락하기</a>
-                </div>
-                <div class="hero-stats" aria-label="핵심 역량">
-                    <div>
-                        <strong>1000h</strong>
-                        <span>빅데이터 교육</span>
+        </div>
+        <div class="hero-visual">
+            <div class="feature-panel">
+                <div class="feature-summary">
+                    <div class="feature-card">
+                        <strong>1,580+</strong>
+                        <span>실시간 등록 매물</span>
                     </div>
-                    <div>
-                        <strong>40s</strong>
-                        <span>성숙한 협업 태도</span>
+                    <div class="feature-card">
+                        <strong>24시간</strong>
+                        <span>매물 알림 서비스</span>
                     </div>
-                    <div>
-                        <strong>Full</strong>
-                        <span>분석부터 배포</span>
+                    <div class="feature-card">
+                        <strong>98%</strong>
+                        <span>사용자 만족도</span>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section id="profile" class="panel profile-panel">
-            <div class="section-heading">
-                <p class="eyebrow">Profile</p>
-                <h2>현실의 문제를 기술로 정리하는 사람</h2>
-            </div>
-            <div class="profile-grid">
-                <article class="profile-card intro-card">
-                    <p>
-                        안녕하세요. 저는 40대 중반의 데이터 기반 웹 개발자 이승호입니다. 빅데이터 1000시간 과정을 통해
-                        Python 데이터 분석, Java 백엔드, Spring 웹 서비스, 클라우드 배포까지 하나의 흐름으로 학습했습니다.
-                    </p>
-                    <p>
-                        단순히 기술을 나열하기보다 사용자가 겪는 문제를 이해하고, 데이터를 근거로 판단하며,
-                        안정적으로 작동하는 결과물을 만드는 것을 중요하게 생각합니다. 현재는 부동산 시장 데이터를 분석해
-                        사용자에게 맞춤형 매물을 추천하는 플랫폼을 제작하고 있습니다.
-                    </p>
-                </article>
-                <article class="profile-card timeline-card">
-                    <div class="timeline-item">
-                        <span>01</span>
-                        <div>
-                            <h3>Business Understanding</h3>
-                            <p>시장, 사용자, 데이터의 맥락을 먼저 파악하고 필요한 기능을 구조화합니다.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <span>02</span>
-                        <div>
-                            <h3>Data Engineering</h3>
-                            <p>Python, MySQL, TiDB를 활용해 데이터를 수집, 정리, 분석 가능한 형태로 다룹니다.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <span>03</span>
-                        <div>
-                            <h3>Service Delivery</h3>
-                            <p>Spring, Thymeleaf, AWS, Render를 활용해 웹 서비스 구현과 배포까지 연결합니다.</p>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section id="skills" class="panel skills-panel">
-            <div class="section-heading">
-                <p class="eyebrow">Skills</p>
-                <h2>데이터 분석과 웹 서비스 구현을 잇는 기술 스택</h2>
-            </div>
-            <div class="skill-board">
-                <article class="skill-group">
-                    <h3>Frontend</h3>
-                    <div class="chips">
-                        <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>React</span><span>BootStrap5</span>
-                    </div>
-                </article>
-                <article class="skill-group">
-                    <h3>Backend</h3>
-                    <div class="chips">
-                        <span>Java</span><span>JSP/Servlet</span><span>Spring</span><span>Thymeleaf</span><span>REST API</span>
-                    </div>
-                </article>
-                <article class="skill-group">
-                    <h3>Data & AI</h3>
-                    <div class="chips">
-                        <span>Python</span><span>MySQL</span><span>TiDB</span><span>RPA</span><span>MLOps</span><span>생성형 AI</span>
-                    </div>
-                </article>
-                <article class="skill-group">
-                    <h3>Cloud & Tools</h3>
-                    <div class="chips">
-                        <span>Git&GitHub</span><span>AWS EC2</span><span>RDS</span><span>S3</span><span>Render</span><span>DevOps</span>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section id="portfolio" class="panel portfolio-panel">
-            <div class="section-heading">
-                <p class="eyebrow">Portfolio</p>
-                <h2>제작 중인 대표 프로젝트</h2>
-            </div>
-            <div class="project-grid single-project">
-                <article class="project-card featured">
-                    <div class="project-top">
-                        <span class="project-index">In Progress</span>
-                        <span class="project-status">URL 준비 중</span>
-                    </div>
-                    <h3>부동산 시장 분석 기반 맞춤형 매물 추천 플랫폼</h3>
-                    <p>
-                        지역별 시세, 매물 조건, 생활 인프라, 사용자 선호도를 분석해 적합한 매물을 추천하는 웹 플랫폼입니다.
-                        데이터 분석 결과를 사용자가 이해하기 쉬운 화면으로 제공하고, 조건 비교와 추천 근거를 함께 보여주는 것을 목표로 제작 중입니다.
-                    </p>
-                    <div class="project-tags">
-                        <span>Python</span><span>Spring</span><span>MySQL</span><span>AWS</span><span>추천 로직</span><span>Data Visualization</span>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section id="contact" class="panel contact-panel">
-            <div class="section-heading">
-                <p class="eyebrow">Contact</p>
-                <h2>새로운 기회를 기다리고 있습니다</h2>
-            </div>
-            <div class="contact-layout">
-                <div class="contact-info">
-                    <a href="tel:010-1234-5678">
-                        <span>Phone</span>
-                        010-1234-5678
-                    </a>
-                    <a href="mailto:lsh.dev@example.com">
-                        <span>Email</span>
-                        lsh.dev@example.com
-                    </a>
-                    <p>
-                        채용, 협업, 프로젝트 문의를 남겨주시면 빠르게 확인하겠습니다.
-                        Netlify 배포 후 Forms 메뉴에서 제출 내역과 이메일 알림을 확인할 수 있습니다.
-                    </p>
+        </div>
+    </div>
+</section>
+<section class="section" id="recommend">
+    <div class="section-header">
+        <div>
+            <h2>추천 매물</h2>
+            <p>관심 지역과 예산에 맞춘 인기 매물을 바로 확인하세요.</p>
+        </div>
+    </div>
+    <div class="cards" id="cards">
+        <article class="property-card" data-name="강남 신축 아파트" data-location="서울" data-type="아파트">
+            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80" alt="강남 신축 아파트">
+            <span class="property-badge">매매</span>
+            <div class="property-body">
+                <div class="property-header">
+                    <h3>강남 신축 아파트</h3>
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">♡</button>
                 </div>
-
-                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
-                    <input type="hidden" name="form-name" value="contact">
-                    <p class="hidden">
-                        <label>비워두세요 <input name="bot-field"></label>
-                    </p>
-                    <label>
-                        이름
-                        <input type="text" name="name" placeholder="홍길동" required>
-                    </label>
-                    <label>
-                        연락처
-                        <input type="text" name="phone" placeholder="010-0000-0000" required>
-                    </label>
-                    <label>
-                        메시지
-                        <textarea name="message" rows="5" placeholder="문의 내용을 입력해 주세요." required></textarea>
-                    </label>
-                    <button class="btn primary submit-btn" type="submit">메시지 보내기</button>
-                    <p class="form-status" role="status" aria-live="polite"></p>
-                </form>
+                <p class="property-meta">서울 강남구 / 84㎡ / 3층</p>
+                <div class="price-row">
+                    <div class="property-price">12억 5천만원</div>
+                    <span class="property-status">즉시 입주</span>
+                </div>
+                <div class="property-features">
+                    <span>4베이</span>
+                    <span>남향</span>
+                    <span>기계식 주차</span>
+                </div>
             </div>
-        </section>
-    </main>
-
-    <script src="./js/script.js"></script>
+        </article>
+        <article class="property-card" data-name="한강뷰 오피스텔" data-location="서울" data-type="오피스텔">
+            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80" alt="한강뷰 오피스텔">
+            <span class="property-badge">전세</span>
+            <div class="property-body">
+                <div class="property-header">
+                    <h3>한강뷰 오피스텔</h3>
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">♡</button>
+                </div>
+                <p class="property-meta">서울 마포구 / 45㎡ / 15층</p>
+                <div class="price-row">
+                    <div class="property-price">7억 2천만원</div>
+                    <span class="property-status">관리비 포함</span>
+                </div>
+                <div class="property-features">
+                    <span>풀옵션</span>
+                    <span>최신 인테리어</span>
+                    <span>한강조망</span>
+                </div>
+            </div>
+        </article>
+        <article class="property-card" data-name="조용한 단독주택" data-location="경기" data-type="단독주택">
+            <img src="https://images.unsplash.com/photo-1494529416407-3db09a3b8801?auto=format&fit=crop&w=900&q=80" alt="조용한 단독주택">
+            <span class="property-badge">매매</span>
+            <div class="property-body">
+                <div class="property-header">
+                    <h3>조용한 단독주택</h3>
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">♡</button>
+                </div>
+                <p class="property-meta">경기도 성남시 / 120㎡ / 1층</p>
+                <div class="price-row">
+                    <div class="property-price">9억원</div>
+                    <span class="property-status">대형 마당</span>
+                </div>
+                <div class="property-features">
+                    <span>단독정원</span>
+                    <span>전용 주차장</span>
+                    <span>학교 인접</span>
+                </div>
+            </div>
+        </article>
+        <article class="property-card" data-name="홍대 라이프 원룸" data-location="서울" data-type="원룸">
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80" alt="홍대 원룸">
+            <span class="property-badge">월세</span>
+            <div class="property-body">
+                <div class="property-header">
+                    <h3>홍대 라이프 원룸</h3>
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">♡</button>
+                </div>
+                <p class="property-meta">서울 마포구 / 26㎡ / 3층</p>
+                <div class="price-row">
+                    <div class="property-price">월세 85만원</div>
+                    <span class="property-status">보증금 500만원</span>
+                </div>
+                <div class="property-features">
+                    <span>보증금 낮음</span>
+                    <span>교통 편리</span>
+                    <span>풀옵션</span>
+                </div>
+            </div>
+        </article>
+        <article class="property-card" data-name="수원 역세권 아파트" data-location="경기" data-type="아파트">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=80" alt="수원 아파트">
+            <span class="property-badge">매매</span>
+            <div class="property-body">
+                <div class="property-header">
+                    <h3>수원 역세권 아파트</h3>
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">♡</button>
+                </div>
+                <p class="property-meta">경기도 수원시 / 95㎡ / 8층</p>
+                <div class="price-row">
+                    <div class="property-price">8억 4천만원</div>
+                    <span class="property-status">역 도보 5분</span>
+                </div>
+                <div class="property-features">
+                    <span>신축급 리모델링</span>
+                    <span>숲세권</span>
+                    <span>관리비 저렴</span>
+                </div>
+            </div>
+        </article>
+        <article class="property-card" data-name="세종 힐링 오피스텔" data-location="세종" data-type="오피스텔">
+            <img src="https://images.unsplash.com/photo-1484480974692-0268b2730bf0?auto=format&fit=crop&w=900&q=80" alt="세종 오피스텔">
+            <span class="property-badge">전세</span>
+            <div class="property-body">
+                <div class="property-header">
+                    <h3>세종 힐링 오피스텔</h3>
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">♡</button>
+                </div>
+                <p class="property-meta">세종시 / 52㎡ / 12층</p>
+                <div class="price-row">
+                    <div class="property-price">6억 8천만원</div>
+                    <span class="property-status">리버뷰</span>
+                </div>
+                <div class="property-features">
+                    <span>조용한 주거지</span>
+                    <span>풀옵션</span>
+                    <span>층고 높음</span>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+<section class="section" id="service">
+    <div class="section-header">
+        <div>
+            <h2>집찾go 서비스</h2>
+            <p>실제 사용 가능한 기능으로 매물을 빠르게 찾고, 관심있는 매물을 관리할 수 있습니다.</p>
+        </div>
+    </div>
+    <div class="section-grid">
+        <div class="card-panel">
+            <h3>원클릭 검색</h3>
+            <p>지역, 유형, 거래 방식으로 원하는 매물을 빠르게 찾을 수 있는 직관적인 검색과 필터 기능을 제공합니다.</p>
+        </div>
+        <div class="card-panel">
+            <h3>관심매물 저장</h3>
+            <p>하트 버튼으로 관심 매물을 담아두고, 다시 방문할 때 빠르게 비교할 수 있습니다.</p>
+        </div>
+        <div class="card-panel">
+            <h3>매물 업데이트</h3>
+            <p>중개사와 실시간으로 연동되는 최신 매물 정보를 유지하여 놓치지 않고 확인할 수 있습니다.</p>
+        </div>
+    </div>
+</section>
+<footer class="footer" id="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <h3>집찾go</h3>
+            <p>더 나은 집 찾기를 위한 부동산 매물 플랫폼. 전국 매물 정보를 간편하게 확인하세요.</p>
+        </div>
+        <div class="footer-column">
+            <h4>서비스</h4>
+            <a href="#search">매물찾기</a>
+            <a href="#recommend">추천매물</a>
+            <a href="#service">서비스</a>
+        </div>
+        <div class="footer-column">
+            <h4>고객지원</h4>
+            <a href="#">공지사항</a>
+            <a href="#">FAQ</a>
+            <a href="#">개인정보처리방침</a>
+        </div>
+        <div class="footer-column">
+            <h4>문의</h4>
+            <p>☎ 02-1234-5678</p>
+            <p>📮 help@jipchakgo.com</p>
+            <p>운영시간: 평일 09:00 - 18:00</p>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 집찾go. All rights reserved.</div>
+</footer>
+</div>
+<script>
+const cards = Array.from(document.querySelectorAll('.property-card'));
+const categoryButtons = Array.from(document.querySelectorAll('.category-button'));
+function toggleFavorite(button) {
+    const active = button.textContent === '♥';
+    button.textContent = active ? '♡' : '♥';
+    button.style.color = active ? 'var(--text)' : 'var(--danger)';
+}
+function searchHouse() {
+    const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
+    const region = document.getElementById('areaSelect').value;
+    cards.forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        const location = card.dataset.location.toLowerCase();
+        const type = card.dataset.type.toLowerCase();
+        const visibleByKeyword = !keyword || name.includes(keyword) || location.includes(keyword) || type.includes(keyword);
+        const visibleByRegion = region === '전체' || location === region.toLowerCase();
+        card.style.display = visibleByKeyword && visibleByRegion ? 'block' : 'none';
+    });
+}
+function filterHouse(type, button) {
+    categoryButtons.forEach(btn => btn.classList.remove('active'));
+    if (button) button.classList.add('active');
+    const normalizedType = type.toLowerCase();
+    cards.forEach(card => {
+        const typeText = card.dataset.type.toLowerCase();
+        card.style.display = (type === '전체' || typeText === normalizedType) ? 'block' : 'none';
+    });
+}
+function resetFilters() {
+    document.getElementById('searchInput').value = '';
+    document.getElementById('areaSelect').value = '전체';
+    filterHouse('전체', categoryButtons[0]);
+}
+</script>
 </body>
 </html>
