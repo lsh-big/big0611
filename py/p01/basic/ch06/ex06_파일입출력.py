@@ -35,18 +35,26 @@ for line in lines:
 f.close()
 
 # with 문: close() 자동 처리
-'''with open('파일이름.txt', 'w') as 별칭(변수):
+'''with open('파일이름.txt', encoding='utf-8') as 별칭(변수):
     별칭.write()
     별칭.read()
     .write('2026년 6월 22일 월요일\n')'''
 
-with open('일기.txt', 'w') as f:
+with open('일기.txt', 'w', encoding='utf-8') as f:
     f.write('2026년 6월 22일 월요일\n')    
 
-with open('일기.txt', 'a') as f:
+with open('일기.txt', 'a', encoding='utf-8') as f:
     f.write('대체로 흐림')
 
-with open('일기.txt', 'r') as f:
+with open('일기.txt', 'r', encoding='utf-8') as f:
     print(f.read())
 
 # 파일 삭제    
+import os 
+
+fileName = 'abc1.txt'
+if os.path.exists(fileName):
+    os.remove(fileName)
+    print('{}파일을 삭제하였습니다.'.format(fileName))
+else:
+    print('{}파일이 존재하지 않습니다.'.format(fileName))
