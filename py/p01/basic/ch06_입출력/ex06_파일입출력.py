@@ -5,9 +5,6 @@ r(read): 읽기 -> read()
 w(write): 쓰기 -> write(), 덮어 씌운다.
 a(append): 추가 -> write()
 '''
-f = open('abc1.txt', 'w')
-f.write('A B C D E F G')
-f.close()
 
 f = open('abc2.txt', 'w')
 f.write('a b c d e f g')
@@ -50,6 +47,7 @@ with open('일기.txt', 'r', encoding='utf-8') as f:
     print(f.read())
 
 # 파일 삭제    
+# 내부 모듈 가져오기
 import os 
 
 fileName = 'abc1.txt'
