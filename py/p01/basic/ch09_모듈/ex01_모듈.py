@@ -4,11 +4,12 @@
 변수: menu
 함수: get_recomment_weight()
 '''
+# import 모듈
 import diet
 # 모듈.함수
 diet.get_recommend_weight(160, False)
 
-# import matplotlib as mpl
+# import 모듈 as 별칭
 import diet as dd
 dd.get_recommend_weight(160, False)
 
