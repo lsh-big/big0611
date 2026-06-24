@@ -66,8 +66,8 @@ def get_valid_age():
             else:
                 return age
         
-        except ValueError:
-            print('숫자만 입력해주세요.')
+        except ValueError as e:
+            print('숫자만 입력해주세요:{e}')
         except KeyboardInterrupt:
             print('\n프로그램을 종료합니다.')
             break
