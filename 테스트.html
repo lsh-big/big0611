@@ -3,253 +3,516 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>집찾go AI</title>
+<title>소나무 출퇴근 관리</title>
 
 <style>
-:root{
-  --primary:#1E88FF;
-  --accent:#17D4B3;
-  --dark:#0F172A;
-  --gray:#64748B;
-  --bg:#F8FAFC;
-  --white:#FFFFFF;
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:"Pretendard",sans-serif;
-}
-
 body{
-  background:var(--bg);
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-}
-
-/* Header */
-header{
-  height:70px;
-  background:white;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 24px;
-  border-bottom:1px solid #E5E7EB;
-}
-
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.logo img{
-  height:40px;
-}
-
-.logo h2{
-  color:var(--dark);
-}
-
-.login-btn{
-  background:transparent;
-  border:none;
-  font-size:15px;
-  cursor:pointer;
-  color:var(--dark);
-}
-
-/* Main */
-
-main{
-  flex:1;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-}
-
-.chat-wrapper{
-  width:100%;
-  max-width:900px;
-  height:75vh;
-  background:white;
-  border-radius:30px;
-  box-shadow:0 20px 50px rgba(0,0,0,.08);
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-}
-
-/* Chat */
-
-.chat-body{
-  flex:1;
-  padding:30px;
-  overflow-y:auto;
-}
-
-.ai-message{
-  max-width:80%;
-  background:#F1F5F9;
-  color:var(--dark);
-  padding:18px;
-  border-radius:20px;
-  line-height:1.7;
-  margin-bottom:20px;
-}
-
-.ai-message h3{
-  margin-bottom:10px;
-}
-
-.suggestions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:15px;
-}
-
-.suggestions button{
-  border:none;
-  background:#E8F2FF;
-  color:var(--primary);
-  padding:10px 14px;
-  border-radius:30px;
-  cursor:pointer;
-  font-size:14px;
-}
-
-/* Input */
-
-.chat-input{
-  border-top:1px solid #E5E7EB;
-  padding:15px;
-  display:flex;
-  gap:10px;
-}
-
-.chat-input input{
-  flex:1;
-  border:none;
-  background:#F8FAFC;
-  border-radius:16px;
-  padding:16px;
-  font-size:16px;
-  outline:none;
-}
-
-.chat-input button{
-  border:none;
-  padding:16px 24px;
-  border-radius:16px;
-  color:white;
-  font-weight:700;
-  cursor:pointer;
-  background:linear-gradient(
-      135deg,
-      #1E88FF,
-      #17D4B3
-  );
-}
-
-/* Mobile */
-
-@media(max-width:768px){
-
-  header{
-    padding:0 16px;
-  }
-
-  .logo h2{
-    font-size:18px;
-  }
-
-  .chat-wrapper{
-    height:85vh;
-    border-radius:20px;
-  }
-
-  .chat-body{
+    font-family:'맑은 고딕',sans-serif;
+    background:#f5f6fa;
+    margin:0;
     padding:20px;
-  }
+}
 
-  .ai-message{
-    max-width:100%;
-    font-size:15px;
-  }
+h1{
+    text-align:center;
+    color:#2e7d32;
+}
 
-  .chat-input{
-    flex-direction:column;
-  }
+.card{
+    background:white;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
 
-  .chat-input button{
+input,select,textarea{
     width:100%;
-  }
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    box-sizing:border-box;
+}
+
+button{
+    background:#2e7d32;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1b5e20;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:8px;
+    text-align:center;
+}
+
+th{
+    background:#2e7d32;
+    color:white;
+}
+
+.calendar{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:5px;
+}
+
+.day{
+    background:white;
+    min-height:120px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    padding:5px;
+    font-size:12px;
+}
+
+.present{
+    color:green;
+    font-weight:bold;
+}
+
+.absent{
+    color:red;
+    font-weight:bold;
+}
+
+.leave{
+    color:blue;
+    font-weight:bold;
+}
+
+.chat{
+    background:#fafafa;
+    border:1px solid #ddd;
+    border-radius:6px;
+    padding:5px;
+    margin-top:5px;
+}
+
+.chat-admin{
+    color:#1565c0;
+}
+
+.chat-user{
+    color:#2e7d32;
 }
 </style>
 </head>
+
 <body>
 
-<header>
+<h1>🌲 소나무 출퇴근 관리</h1>
 
-  <div class="logo">
-    <!-- 로고 이미지 경로 -->
-    <img src="images/logo.png" alt="집찾go">
-    <h2>집찾go AI</h2>
-  </div>
+<div class="card">
+<h3>직원 등록</h3>
 
-  <button class="login-btn">로그인</button>
+<input id="employeeName" placeholder="직원 이름">
 
-</header>
+<button onclick="addEmployee()">직원 추가</button>
+</div>
 
-<main>
+<div class="card">
+<h3>출근 / 결근 등록</h3>
 
-  <div class="chat-wrapper">
+<select id="employeeSelect"></select>
 
-    <div class="chat-body">
+<select id="status">
+<option value="출근">출근</option>
+<option value="결근">결근</option>
+</select>
 
-      <div class="ai-message">
+<textarea id="comment" placeholder="코멘트"></textarea>
 
-        <h3>🏠 안녕하세요, 집찾go AI입니다.</h3>
+<button onclick="checkIn()">등록</button>
+</div>
 
-        원하는 집 조건을 편하게 이야기해주세요.
+<div class="card">
+<h3>퇴근 등록</h3>
 
-        <br><br>
+<select id="checkoutEmployee"></select>
 
-        예를 들어,
+<textarea id="checkoutComment" placeholder="퇴근 코멘트"></textarea>
 
-        <br>• 강남 출퇴근 30분 이내
-        <br>• 전세 3억 이하
-        <br>• 반려견 가능
-        <br>• 신혼부부 추천
-        <br>• 초등학교 가까운 곳
+<button onclick="checkOut()">퇴근</button>
+</div>
 
-        <div class="suggestions">
-          <button>강남 출퇴근 30분</button>
-          <button>전세 3억 이하</button>
-          <button>신혼부부 추천</button>
-          <button>반려동물 가능</button>
-        </div>
+<div class="card">
+<h3>관리자 답변</h3>
 
-      </div>
+<select id="replyEmployee"></select>
 
-    </div>
+<textarea id="replyText" placeholder="답변 입력"></textarea>
 
-    <div class="chat-input">
-      <input
-        type="text"
-        placeholder="원하는 집 조건을 입력하세요..."
-      >
-      <button>전송</button>
-    </div>
+<button onclick="addReply()">답변 등록</button>
+</div>
 
-  </div>
+<div class="card">
+<h3>오늘 현황</h3>
 
-</main>
+<div id="summary"></div>
+</div>
+
+<div class="card">
+<h3>출퇴근 기록</h3>
+
+<table>
+<thead>
+<tr>
+<th>날짜</th>
+<th>직원</th>
+<th>상태</th>
+<th>출근</th>
+<th>퇴근</th>
+</tr>
+</thead>
+<tbody id="recordTable"></tbody>
+</table>
+</div>
+
+<div class="card">
+<h3>코멘트 / 답변</h3>
+<div id="messageArea"></div>
+</div>
+
+<div class="card">
+<h3>📅 달력</h3>
+<div class="calendar" id="calendar"></div>
+</div>
+
+<script>
+
+let employees =
+JSON.parse(localStorage.getItem('employees')) || [];
+
+let records =
+JSON.parse(localStorage.getItem('records')) || [];
+
+function save(){
+localStorage.setItem(
+'employees',
+JSON.stringify(employees)
+);
+
+localStorage.setItem(
+'records',
+JSON.stringify(records)
+);
+
+render();
+}
+
+function addEmployee(){
+
+const name =
+document.getElementById(
+'employeeName'
+).value.trim();
+
+if(!name) return;
+
+if(!employees.includes(name))
+employees.push(name);
+
+save();
+}
+
+function updateSelects(){
+
+const ids=[
+'employeeSelect',
+'checkoutEmployee',
+'replyEmployee'
+];
+
+ids.forEach(id=>{
+
+const select=
+document.getElementById(id);
+
+select.innerHTML='';
+
+employees.forEach(emp=>{
+
+select.innerHTML +=
+`<option>${emp}</option>`;
+
+});
+});
+}
+
+function checkIn(){
+
+const name =
+employeeSelect.value;
+
+const status =
+document.getElementById('status').value;
+
+const comment =
+document.getElementById('comment').value;
+
+records.push({
+
+date:new Date().toLocaleDateString(),
+
+name,
+
+status,
+
+checkIn:
+status==="출근"
+?
+new Date().toLocaleTimeString()
+:
+"-",
+
+checkOut:"",
+
+messages:[
+{
+writer:name,
+time:new Date().toLocaleString(),
+text:comment
+}
+]
+});
+
+save();
+}
+
+function checkOut(){
+
+const name =
+checkoutEmployee.value;
+
+const comment =
+document.getElementById(
+'checkoutComment'
+).value;
+
+let record =
+[...records]
+.reverse()
+.find(r=>
+r.name===name &&
+!r.checkOut
+);
+
+if(record){
+
+record.checkOut =
+new Date().toLocaleTimeString();
+
+record.messages.push({
+writer:name,
+time:new Date().toLocaleString(),
+text:"퇴근 : " + comment
+});
+
+save();
+}
+}
+
+function addReply(){
+
+const name =
+replyEmployee.value;
+
+const text =
+document.getElementById(
+'replyText'
+).value;
+
+let record =
+[...records]
+.reverse()
+.find(r=>r.name===name);
+
+if(record){
+
+record.messages.push({
+
+writer:"관리자",
+
+time:new Date().toLocaleString(),
+
+text:text
+
+});
+
+save();
+}
+}
+
+function render(){
+
+updateSelects();
+
+const tbody=
+document.getElementById(
+'recordTable'
+);
+
+tbody.innerHTML='';
+
+records.forEach(r=>{
+
+tbody.innerHTML += `
+<tr>
+<td>${r.date}</td>
+<td>${r.name}</td>
+<td>${r.status}</td>
+<td>${r.checkIn}</td>
+<td>${r.checkOut || '-'}</td>
+</tr>`;
+});
+
+let present=
+records.filter(
+r=>r.status==="출근"
+).length;
+
+let absent=
+records.filter(
+r=>r.status==="결근"
+).length;
+
+let leave=
+records.filter(
+r=>r.checkOut
+).length;
+
+document.getElementById(
+'summary'
+).innerHTML=
+`
+🟢 출근 : ${present}명<br>
+🔴 결근 : ${absent}명<br>
+🔵 퇴근완료 : ${leave}명
+`;
+
+const msg=
+document.getElementById(
+'messageArea'
+);
+
+msg.innerHTML='';
+
+records.forEach(r=>{
+
+msg.innerHTML +=
+`<h4>${r.name}</h4>`;
+
+r.messages.forEach(m=>{
+
+msg.innerHTML +=
+`
+<div class="chat">
+<b class="${
+m.writer==="관리자"
+?
+'chat-admin'
+:
+'chat-user'
+}">
+${m.writer}
+</b>
+
+<br>
+
+${m.text}
+
+<br>
+
+<small>
+${m.time}
+</small>
+
+</div>
+`;
+
+});
+});
+
+const cal=
+document.getElementById(
+'calendar'
+);
+
+cal.innerHTML='';
+
+for(let i=1;i<=31;i++){
+
+let dayDiv=
+document.createElement('div');
+
+dayDiv.className='day';
+
+let html=
+`<b>${i}일</b><br>`;
+
+records.forEach(r=>{
+
+const day =
+new Date(r.date)
+.getDate();
+
+if(day===i){
+
+if(r.status==="출근"){
+
+html +=
+`<div class="present">
+🟢 ${r.name}
+</div>`;
+
+}
+
+if(r.status==="결근"){
+
+html +=
+`<div class="absent">
+🔴 ${r.name}
+</div>`;
+
+}
+
+if(r.checkOut){
+
+html +=
+`<div class="leave">
+🔵 ${r.name}
+</div>`;
+
+}
+
+}
+});
+
+dayDiv.innerHTML=html;
+
+cal.appendChild(dayDiv);
+}
+
+}
+
+render();
+
+</script>
 
 </body>
 </html>
