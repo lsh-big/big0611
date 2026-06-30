@@ -1,0 +1,419 @@
+/* ======================
+   common.css
+   전체 페이지 공통 스타일
+   ====================== */
+
+:root{
+    --primary:#1E88FF;
+    --accent:#17D4B3;
+    --dark:#0F172A;
+    --gray:#64748B;
+    --light:#F8FAFC;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Pretendard,sans-serif;
+}
+
+/* body{
+    background:linear-gradient(135deg,#F8FAFC,#EEF7FF);
+} */
+body{
+    min-height:100vh;
+    background:
+    linear-gradient(135deg,#F8FAFC,#EEF7FF);
+    color:var(--dark);
+    overflow-x:hidden;
+    transition:.4s;
+}
+/* ── header ── */
+
+header{
+    height:80px;
+    padding:0 60px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo img{
+    padding-top: 20px;
+    height:100px;
+
+}
+
+nav{
+    display:flex;
+    gap:35px;
+}
+
+nav a{
+    text-decoration:none;
+    color:var(--dark);
+    font-weight:600;
+}
+@media (max-width:768px){
+
+header{
+
+    height:auto;
+
+    padding:18px;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(15px);
+
+    border-radius:0 0 25px 25px;
+
+}
+nav{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    width:100%;
+}
+
+nav a{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    height:38px;
+
+    font-size:13px;
+    font-weight:600;
+
+    color:white;
+
+    text-decoration:none;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:12px;
+
+    padding:0;
+
+    transition:.25s;
+}
+
+nav a:hover{
+    background:rgba(255,255,255,.18);
+}
+
+}
+/* ── responsive: common ── */
+@media (max-width:768px){
+
+.hero{
+
+    width:92%;
+
+}
+
+.badge{
+
+    background:rgba(255,255,255,.15);
+
+    color:#fff;
+
+    backdrop-filter:blur(10px);
+
+}
+
+h1{
+
+    color:white;
+
+    font-size:34px;
+
+}
+
+.sub{
+
+    color:#D7E8FF;
+
+}
+
+.ai-box{
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+}
+
+.ai-box textarea{
+
+    color:white;
+
+    background:transparent;
+
+}
+
+.ai-box textarea{
+    background:transparent;
+    color:#0F172A;      /* 검정 계열 글씨 */
+    caret-color:#1E88FF;
+}
+
+.ai-box textarea::placeholder{
+    color:#64748B;
+}
+
+.tag{
+
+    background:rgba(255,255,255,.12);
+
+    color:white;
+
+}
+
+.ask{
+
+    width:100%;
+
+    background:linear-gradient(
+    135deg,
+    #00C6FF,
+    #00E5B0);
+
+}
+
+.feature{
+
+    background:rgba(255,255,255,.10);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+}
+
+.feature strong{
+
+    color:white;
+
+}
+
+.feature span{
+
+    color:#DCEBFF;
+
+}
+
+/* }
+@media (max-width:768px){
+
+    header{
+        padding:20px;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .logo img{
+        height:45px;
+        padding-top:0;
+    }
+
+    nav{
+        gap:18px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    nav a{ font-size:14px; }
+} */
+/* =========================
+   Mobile Design
+========================= */
+
+@media (max-width:768px){
+
+    body{
+    min-height:100vh;
+    background:linear-gradient(
+        180deg,
+        #081120 0%,
+        #0F2A4A 35%,
+        #1E88FF 100%
+    );
+    background-attachment:fixed;
+    background-repeat:no-repeat;
+    color:white;
+}
+
+    body::before{
+
+        content:"";
+
+        position:fixed;
+
+        inset:0;
+
+        background:
+
+        radial-gradient(circle at top right,
+        rgba(23,212,179,.25),
+        transparent 35%),
+
+        radial-gradient(circle at bottom left,
+        rgba(255,255,255,.08),
+        transparent 40%);
+
+        pointer-events:none;
+
+        z-index:-1;
+
+    }
+
+}
+.feature{
+
+    animation:fadeUp .7s ease;
+
+}
+
+@keyframes fadeUp{
+
+0%{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}}
+/* ===========================
+   Mobile Menu
+=========================== */
+
+.menu-btn{
+
+    display:none;
+
+    border:none;
+
+    background:none;
+
+    font-size:34px;
+
+    cursor:pointer;
+
+    color:var(--dark);
+
+}
+
+/* 모바일 */
+
+@media (max-width:768px){
+
+header{
+
+    height:70px;
+
+    flex-direction:row;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 20px;
+
+    position:relative;
+
+}
+
+.logo img{
+
+    height:75px;
+
+}
+
+.menu-btn{
+
+    display:block;
+
+    color:white;
+
+}
+
+nav{
+
+    position:absolute;
+
+    top:70px;
+
+    left:0;
+
+    width:100%;
+
+    background:rgba(10,20,40,.96);
+
+    backdrop-filter:blur(20px);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:0;
+
+    max-height:0;
+
+    overflow:hidden;
+
+    transition:.35s;
+
+}
+
+nav.active{
+
+    max-height:400px;
+
+}
+
+nav a{
+
+    width:100%;
+
+    padding:18px;
+
+    text-align:center;
+
+    color:white;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    background:none;
+
+}
+
+nav a:hover{
+
+    background:rgba(255,255,255,.08);
+
+}
+
+}
