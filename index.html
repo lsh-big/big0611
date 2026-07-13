@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이승호 | AI 데이터 인재 포트폴리오</title>
+    <meta
+      name="description"
+      content="AI 활용 빅데이터 6개월 과정 수료 후 취업을 준비하는 이승호의 현대적이고 세련된 자기소개 홈페이지입니다."
+    />
+    <link rel="stylesheet" href="static/css/main.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-one"></div>
+    <div class="bg-orb orb-two"></div>
+
+    <header class="hero" id="home">
+      <nav class="nav">
+        <a href="#home" class="brand">LEE SEUNG HO</a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <div class="hero-content">
+        <div class="hero-copy">
+          <p class="eyebrow">AI 활용 빅데이터 6개월 과정 수료</p>
+          <h1>
+            데이터의 흐름을 읽고,<br />
+            <span>미래를 설계하는 사람</span>
+          </h1>
+          <p class="lead">
+            AI 활용 빅데이터 교육과정을 6개월 동안 수료하며,
+            데이터 분석, 시각화, 문제 해결 역량을 체계적으로 익혀왔습니다.
+            단순히 배우는 것을 넘어, 실무적 사고와 책임감 있는 태도로 새 도전을 준비하고 있습니다.
+          </p>
+          <div class="hero-actions">
+            <a href="#capabilities" class="btn btn-primary">핵심 역량</a>
+            <a href="#contact" class="btn btn-secondary">연락하기</a>
+          </div>
+        </div>
+
+        <div class="hero-panel tilt-card">
+          <div class="panel-chip">Now Building</div>
+          <h3>AI 시대를 위한 준비된 인재</h3>
+          <ul>
+            <li>Python 기반 데이터 분석</li>
+            <li>Pandas와 시각화를 활용한 해석력</li>
+            <li>지속적인 학습과 협업 역량</li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section" id="about">
+        <div class="section-heading">
+          <p class="eyebrow">About</p>
+          <h2>성실함과 책임감으로, 새로운 경계를 열어가고 있습니다.</h2>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card tilt-card">
+            <strong>6개월</strong>
+            <span>AI 활용 빅데이터 과정 수료</span>
+          </article>
+          <article class="stat-card tilt-card">
+            <strong>3가지</strong>
+            <span>핵심 역량: 분석, 시각화, AI 이해</span>
+          </article>
+          <article class="stat-card tilt-card">
+            <strong>100%</strong>
+            <span>취업 준비에 집중하는 성장형 태도</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="capabilities">
+        <div class="section-heading">
+          <p class="eyebrow">Capabilities</p>
+          <h2>기술적 역량과 태도를 함께 보여주는 인재로 성장 중입니다.</h2>
+        </div>
+        <div class="card-grid">
+          <article class="feature-card tilt-card">
+            <h3>Data Intelligence</h3>
+            <p>Python과 Pandas를 활용해 데이터를 정리하고 의미 있는 인사이트로 연결하는 흐름을 익혔습니다.</p>
+          </article>
+          <article class="feature-card tilt-card">
+            <h3>Visual Communication</h3>
+            <p>분석 결과를 이해하기 쉽게 전달할 수 있도록 시각화와 보고 방식에 대한 감각을 키워가고 있습니다.</p>
+          </article>
+          <article class="feature-card tilt-card">
+            <h3>Future-Ready Learning</h3>
+            <p>AI 기반 데이터 처리의 기본 개념과 활용 가능성을 이해하며, 변화하는 환경에 빠르게 적응하는 자세를 갖추고 있습니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="contact-box tilt-card">
+          <p class="eyebrow">Contact</p>
+          <h2>다음 챕터를 함께 만들어갈 기회를 기다립니다.</h2>
+          <p>아래로 연락 주세요.</p>
+          <a href="mailto:winho2@naver.com" class="contact-link">winho2@naver.com</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Lee Seung Ho. Built for a bold AI-driven career start.</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const cards = document.querySelectorAll(".tilt-card");
+
+        cards.forEach((card) => {
+          card.addEventListener("mousemove", (event) => {
+            const rect = card.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            const rotateY = ((x / rect.width) - 0.5) * 10;
+            const rotateX = ((0.5 - y / rect.height)) * 10;
+
+            card.style.setProperty("--rx", `${rotateX}deg`);
+            card.style.setProperty("--ry", `${rotateY}deg`);
+          });
+
+          card.addEventListener("mouseleave", () => {
+            card.style.setProperty("--rx", "0deg");
+            card.style.setProperty("--ry", "0deg");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
