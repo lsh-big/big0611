@@ -239,8 +239,8 @@ footer {
   max-width: 1180px;
   margin: 0 auto;
   padding: 88px 24px 0;
-  opacity:0;
-    transform:translateY(40px);
+  opacity:1;
+    transform:none;
     transition:.8s;
 }
 .section.show{
