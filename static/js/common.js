@@ -52,12 +52,12 @@ if (topBtn) {
 
 }
 
-topBtn.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-});
+// topBtn.addEventListener("click", () => {
+//     window.scrollTo({
+//         top: 0,
+//         behavior: "smooth"
+//     });
+// });
 const indicator = document.querySelector(".scroll-indicator");
 
 window.addEventListener("scroll", () => {
