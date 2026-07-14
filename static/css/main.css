@@ -512,4 +512,8 @@ footer {
         width: 90px;
         height: 90px;
     }
+
+    .scroll-indicator {
+        display: none;
+    }
 }
