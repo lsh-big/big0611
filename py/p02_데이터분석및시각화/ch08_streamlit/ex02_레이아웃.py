@@ -98,10 +98,10 @@ st.success('처리 완료!')
 # 빈 공간 만들기
 placeholder = st.empty()
 
-# 나중에 내용 채우기
+# 나중에 내용 채우기 
 import time
 time.sleep(2)
-placeholder.write('검색 결과가 나타났습니다!')
+placeholder.text('검색 결과가 나타났습니다!')
 
 # 내용 교체하기
 time.sleep(2)
