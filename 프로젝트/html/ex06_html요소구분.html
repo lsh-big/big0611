@@ -37,6 +37,37 @@
 
     <!-- Embedded -->
     <h2>Embedded</h2>
+    <img src="경로/파일명" alt="대체테스트">
+    <video src="경로/파일명"></video>
+    <video>
+        <source src="경로/파일명" type="video/mp4">
+        <source src="경로/파일명" type="video/webm">
+        <source src="경로/파일명" type="video/ogg">
+        비디오 재생을 지원하지 않는 브라우저입니다.
+    </video>
+    <audio src="경로/파일명" controls></audio>
+    <audio controls>
+        <source src="경로/파일명" type="audio/mpeg">
+        <source src="경로/파일명" type="audio/wav">
+        <source src="경로/파일명" type="audio/ogg">
+        오디오 재생을 지원하지 않는 브라우저입니다.
+    </audio>
+    <iframe src=""></iframe>
+    <picture>
+
+        <!-- 992px 보다 크면(데스크탑pc용.png) 사용 -->
+        <source media="(max-width: 768px)" srcset="테블릿.png">
+        <!-- 992px 보다 작으면(mobile용.png) 사용 -->
+        <source media="(min-width: 992px)" srcset="pc용.png">
+        <!-- 그렇지 않으면 폰.png를 출력 -->
+        <img src="폰.png" alt="프로필 이미지">
+    </picture>
+    <canvas></canvas>
+    <svg></svg>
+    <object data="" type></object>
+    <embed src="" type="">
+        
+
     <!-- Interactive -->
     <h2>Interactive</h2>
     <!-- Phrasing -->
