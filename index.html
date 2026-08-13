@@ -175,15 +175,36 @@
         <div class="contact-box tilt-card">
           <p class="eyebrow">Contact</p>
           <h2>다음 챕터를 함께 만들어갈 기회를 기다립니다.</h2>
-          <p>아래로 연락 주세요.</p>
-        <div class="contact-profile">
-          <a href="mailto:winho2@naver.com" class="contact-link">winho2@naver.com
-          </a>
-    <div class="hero-image">
-      <img src="./static/images/profile.jpg" alt="이승호 프로필">
-    </div>
+          <p>메모를 남겨주세요.</p>
+          <div class="contact-grid">
+            <form id="contactForm" class="contact-form" action="#" method="post">
+              <label for="name">이름</label>
+              <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required />
+
+              <label for="phone">연락처</label>
+              <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" required />
+
+              <label for="email">이메일</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+              <label for="message">메모</label>
+              <textarea id="message" name="message" rows="5" placeholder="메모를 남겨주세요" required></textarea>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">전송</button>
+                <button type="reset" class="btn btn-secondary">초기화</button>
+              </div>
+            </form>
+
+            <div class="contact-profile">
+              <a href="mailto:winho2@naver.com" class="contact-link">winho2@naver.com</a>
+              <a href="tel:01071890897" class="contact-link contact-phone">010-7189-0897</a>
+              <div class="hero-image">
+                <img src="./static/images/profile.jpg" alt="이승호 프로필" />
+              </div>
+            </div>
+          </div>
         </div>
-      </div></div>
       </section>
     </main>
     <button id="topBtn" class="top-btn" aria-label="맨 위로 이동">
@@ -195,5 +216,22 @@
 
 
 <script src="./static/js/common.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = form.name.value.trim();
+    var phone = form.phone.value.trim();
+    var email = form.email.value.trim();
+    var message = form.message.value.trim();
+    var subject = '웹사이트 문의: ' + (name || '익명');
+    var body = '이름: ' + name + '\n' + '연락처: ' + phone + '\n' + '이메일: ' + email + '\n\n' + message;
+    var mailto = 'mailto:winho2@naver.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    window.location.href = mailto;
+  });
+});
+</script>
   </body>
 </html>
